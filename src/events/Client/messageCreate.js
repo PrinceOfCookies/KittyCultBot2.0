@@ -4,6 +4,24 @@ const { joinVoiceChannel } = require("@discordjs/voice");
 let cd = 1;
 let chalk = require("chalk");
 
+async function fetchCatImage() {
+    try {
+        const response = await axios.get('https://api.thecatapi.com/v1/images/search', {
+            headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': process.env.CATAPI
+            },
+            params: {
+                limit: 1
+            }
+        });
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+
 module.exports = {
     name: "messageCreate",
     async execute(message) {
@@ -50,7 +68,7 @@ module.exports = {
             cd = Date.now() / 1000 + 3;
 
             try {
-                const response = await axios.get("https://api.thecatapi.com/v1/images/search?limit=1&api_key=live_...");
+                const response = fetchCatImage();
                 return message.channel.send(response.data[0].url);
             } catch (error) {
                 console.error("Error fetching cat image:", error);
