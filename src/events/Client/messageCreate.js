@@ -6,15 +6,7 @@ let chalk = require("chalk");
 
 async function fetchCatImage() {
     try {
-        const response = await axios.get('https://api.thecatapi.com/v1/images/search', {
-            headers: {
-                'Content-Type': 'application/json',
-                'x-api-key': process.env.CATAPI
-            },
-            params: {
-                limit: 1
-            }
-        });
+        const response = await axios.get('https://api.thecatapi.com/v1/images/search?limit=1');
         return response.data;
     } catch (error) {
         throw error;
