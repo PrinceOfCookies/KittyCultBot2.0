@@ -23,7 +23,7 @@ module.exports = {
 		let commands = {
             joinvc: ["joinoryoureabitch", "justjoinbruh"],
             leavevc: ["leavevc", "gtfo", "disconnect"],
-            cat: ["cat", "kitty", ":3", "meow", "car", "leighcan...", "nyan", "leighcanfuckoffcuzshebeinalittlebitchcuzshekeepstellingmetoaddshitlikecarmeow:3andkittyjkyourenotabitchbutyouarealittleweirdandalsosupergaybutthatsnotthereasonthatyouarealittleweirdyouareabitchthoughmyfriendnicknameforyouprovesit"],
+            cat: ["cat", "kitty", ":3", "meow", "car", "leighcan...", "nya", "leighcanfuckoffcuzshebeinalittlebitchcuzshekeepstellingmetoaddshitlikecarmeow:3andkittyjkyourenotabitchbutyouarealittleweirdandalsosupergaybutthatsnotthereasonthatyouarealittleweirdyouareabitchthoughmyfriendnicknameforyouprovesit"],
             someone: "@someone"
         };
 
