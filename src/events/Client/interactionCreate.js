@@ -7,14 +7,15 @@ module.exports = {
       const { commands } = client;
       const { commandName, user } = interaction;
       const command = commands.get(commandName);
+      const cooldownKey = `${user.id}-${command?.data?.name ?? command?.name ?? commandName}`;
 
       if (!command) return;
 
       try {
         // Check if the command is on cooldown for that guild
         if (command.cooldown) {
-          if (client.cooldowns.has(`${user.id}-${command.name}`)) {
-            const timeLeft = client.cooldowns.get(`${user.id}-${command.name}`);
+          if (client.cooldowns.has(cooldownKey)) {
+            const timeLeft = client.cooldowns.get(cooldownKey);
             let timeleft = timeLeft * 0.001 - Math.floor(Date.now() * 0.001);
 
             return await interaction.reply({
@@ -30,17 +31,24 @@ module.exports = {
 
         if (command.cooldown) {
           const cd = command.cooldown * 1000;
-          client.cooldowns.set(`${user.id}-${command.name}`, Date.now() + cd);
+          client.cooldowns.set(cooldownKey, Date.now() + cd);
           setTimeout(() => {
-            client.cooldowns.delete(`${user.id}-${command.name}`);
+            client.cooldowns.delete(cooldownKey);
           }, cd);
         }
       } catch (err) {
         console.log(err);
-        await interaction.reply({
+        const payload = {
           content: `Something went wrong while executing this command!`,
           ephemeral: true,
-        });
+        };
+
+        if (interaction.replied || interaction.deferred) {
+          await interaction.followUp(payload);
+          return;
+        }
+
+        await interaction.reply(payload);
       }
     } else if (interaction.isButton()) {
       return;
