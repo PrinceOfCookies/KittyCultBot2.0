@@ -14,8 +14,7 @@ module.exports = {
 
   async execute(interaction) {
     const { options } = interaction;
-    let q = await options.getString("question");
-    q = q.toLowerCase();
+    const q = options.getString("question").toLowerCase();
     let possibleResponses = [
       "Ask again later",
       "Don't count on it",
@@ -83,15 +82,6 @@ module.exports = {
       return await interaction.reply({
         content: `Question: ${q}\nAnwser: ${response}`,
       });
-    } else {
-      console.log("[I")
-
-      console.log(
-        await client.color(
-          "#2afeb7",
-          `[Command Issue]: Interaction not valid for command "8ball"`
-        )
-      );
     }
   },
   color: chalk.hex("#DEADED"),

@@ -17,9 +17,9 @@ module.exports = {
 
     if (time < 0) time = 0;
     if (time > 21600) time = 21600;
-    channel.setRateLimitPerUser(time);
+    await channel.setRateLimitPerUser(time);
 
-    interaction.reply({
+    return interaction.reply({
       content: `Channel slowmode has been set to ${time} second(s) by ${interaction.user.displayName}`,
     });
   },

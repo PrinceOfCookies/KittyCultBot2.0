@@ -35,7 +35,7 @@ module.exports = {
     // Get the member
     const member = await interaction.guild.members.fetch(user.id);
     // Timeout the member
-    member.timeout(time * 1000 );
+    await member.timeout(time * 1000 );
 
     return await interaction.reply({
       content: `User ${user.username} has been timed out for ${time} second(s) by ${interaction.user.username} for reason ${reason}`,
