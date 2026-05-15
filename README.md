@@ -16,6 +16,8 @@ KittyCultBot is the cat-focused Discord bot that runs under the MasterBot host.
 - MasterBot loads this bot through `bots/kittycultbot/index.js`
 - `client.handleCommands()` is host-owned and loads slash commands from the bot command root
 - Shared tools and handlers still come from MasterBot unless KittyCultBot overrides them locally
+- Unchanged slash commands skip REST refresh on startup because MasterBot hashes the loaded command definitions
+- Startup logs include timing marks for the main boot phases when the worker finishes starting
 
 ## Bot config
 
